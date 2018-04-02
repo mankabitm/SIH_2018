@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Smart Converter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <style type="text/css">
+      body {
+        margin-top: 50px;
+      }
+      button {
+        margin-right: 12px;
+      }
+      .input-group {*
+        margin-top: 5px;
+        margin-bottom: 20px;
+      }
+      .labels {
+        background-color: #2CB0C5;
+        color: white;
+        text-align: center;
+        padding: 4px;
+        margin-left: 2px;
+        width: 200px;
+      }
+      button a {
+          display: inline-block;
+          color: white;
+          text-align: center;
+          text-decoration: none;
+      }
+      button a:hover {
+        text-decoration: none;
+        color: white;
+      }
+      button.right {
+        float: right;
+        background-color: #f05f40;
+      }
+      #synonyml {
+        color: red;
+      }
+      #synonymw {
+        color: red;
+      }
+      #una {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    
+    <div class="container">
+      <button class="right btn btn-primary btn-md" role="button"><a href="index.html">Home</a></button>
+      <h3> Converter from Ayurveda/Unani Metric System To Modern Metric System </h3>
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link active toggle"  id="ayul"href="#">Ayurveda</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link toggle"  id="unal" href="#">Unani</a>
+        </li>
+      </ul>
+      <hr>
+      <div id="ayu">
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 portfolio-item">
+          <h4> Time Converter </h4>
+          <div class="input-group ">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="timeayu" type="number" oninput="TimeConverter(this.value)" onchange="TimeConverter(this.value)" placeholder="Ayurveda"> 
+            <select class="form-control" id="tim1" data-size="auto" name="Time Unit" onchange="TimeConverter($('#timeayu').val())">
+              <option value="KSHANA">KSHANA</option>
+              <option value="LAVA">LAVA</option>
+              <option value="KALAA">KALAA</option>
+              <option value="KASHTHA">KASHTHA</option>
+              <option value="NIMESHA">NIMESHA</option>
+              <option value="GHATI">GHATI</option>
+              <option value="MUHOORTA">MUHOORTA</option>
+              <option value="AHORATRA">AHORATRA</option>
+              <option value="PAKSHA">PAKSHA</option>
+              <option value="MAASA">MAASA</option>
+              <option value="RITU">RITU</option>
+              <option value="AYANA">AYANA</option>
+              <option value="SAMVATSARA">SAMVATSARA</option>
+              <option value="YUGA">YUGA</option>
+              <option value="AHORATRA OF DEVA">AHORATRA OF DEVA</option>
+              <option value="AHORATRA OF PITARASA">AHORATRA OF PITARASA</option>
+              <option value="SECONDS">SECONDS</option>
+              <option value="MINUTES">MINUTES</option>
+              <option value="HOURS">HOURS</option>
+              <option value="DAYS">DAYS</option>
+              <option value="MONTHS">MONTHS</option>
+              <option value="YEARS">YEARS</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="sec" type="number" placeholder="Ayurveda">
+            <select class="form-control" id="tim2" data-size="auto" name="Time Unit" onchange="TimeConverter($('#timeayu').val())"">
+              <option value="KSHANA">KSHANA</option>
+              <option value="LAVA">LAVA</option>
+              <option value="KALAA">KALAA</option>
+              <option value="KASHTHA">KASHTHA</option>
+              <option value="NIMESHA">NIMESHA</option>
+              <option value="GHATI">GHATI</option>
+              <option value="MUHOORTA">MUHOORTA</option>
+              <option value="AHORATRA">AHORATRA</option>
+              <option value="PAKSHA">PAKSHA</option>
+              <option value="MAASA">MAASA</option>
+              <option value="RITU">RITU</option>
+              <option value="AYANA">AYANA</option>
+              <option value="SAMVATSARA">SAMVATSARA</option>
+              <option value="YUGA">YUGA</option>
+              <option value="AHORATRA OF DEVA">AHORATRA OF DEVA</option>
+              <option value="AHORATRA OF PITARASA">AHORATRA OF PITARASA</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="hr" type="number" placeholder="Modern">
+            <select class="form-control" id="tim3" data-size="auto" name="Time Unit" onchange="TimeConverter($('#timeayu').val())"">
+              <option value="SECONDS">SECONDS</option>
+              <option value="MINUTES">MINUTES</option>
+              <option value="HOURS">HOURS</option>
+              <option value="DAYS">DAYS</option>
+              <option value="MONTHS">MONTHS</option>
+              <option value="YEARS">YEARS</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 portfolio-item">
+          <h4> Length Converter </h4>
+          <div class="input-group ">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="lenayu" type="number" oninput="LengthConverter(this.value)" onchange="LengthConverter(this.value)"> 
+            <select class="form-control" id="lenmod" name="Length Unit" onchange="LengthConverter($('#lenayu').val())">
+              <option value="YAVODARA">YAVODARA</option>
+              <option value="ANGULA">ANGULA</option>
+              <option value="BITAHASTI">BITAHASTI</option>
+              <option value="AARATNI">AARATNI</option>
+              <option value="HASTI">HASTI</option>
+              <option value="RAJAHASTA">RAJAHASTA</option>
+              <option value="NRIPAHASTA">NRIPAHASTA</option>
+              <option value="VYAM">VYAM</option>
+              <option value="INCHES">INCHES</option>
+              <option value="MILLIMETERS">MILLIMETERS</option>
+              <option value="CENTIMETERS">CENTIMETERS</option>
+              <option value="METERS">METERS</option>
+              <option value="KILOMETERS">KILOMETERS</option>
+              <option value="FEET">FEET</option>
+            </select>
+            
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="lmoda" type="number" placeholder="Ayurveda">
+            <select class="form-control" id="lenmoda" name="Length Unit" onchange="LengthConverter($('#lenayu').val())">
+              <option value="YAVODARA">YAVODARA</option>
+              <option value="ANGULA">ANGULA</option>
+              <option value="BITAHASTI">BITAHASTI</option>
+              <option value="AARATNI">AARATNI</option>
+              <option value="HASTI">HASTI</option>
+              <option value="RAJAHASTA">RAJAHASTA</option>
+              <option value="NRIPAHASTA">NRIPAHASTA</option>
+              <option value="VYAM">VYAM</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="lmodm" type="number" placeholder="Modern">
+            <select class="form-control" id="lenmodm" name="Length Unit" onchange="LengthConverter($('#lenayu').val())">
+              <option value="INCHES">INCHES</option>
+              <option value="MILLIMETERS">MILLIMETERS</option>
+              <option value="CENTIMETERS">CENTIMETERS</option>
+              <option value="METERS">METERS</option>
+              <option value="KILOMETERS">KILOMETERS</option>
+              <option value="FEET">FEET</option>
+            </select>
+          </div>
+          <p id="synonyml" ></p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 portfolio-item">
+          <h4> Weight Converter(MAGADHA) </h4>
+          <div class="input-group ">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="wtimgd" type="number" oninput="WeightConverter(this.value)" onchange="WeightConverter(this.value)"> 
+            <select class="form-control" id="wtnmgd" name="Weight Unit" onchange="WeightConverter($('#wtimgd').val())">
+              <option value="PARAMAANU">PARAMAANU</option>
+              <option value="VAMSEE">VAMSEE</option>
+              <option value="MAREECHI">MAREECHI</option>
+              <option value="RAAJIKA">RAAJIKA</option>
+              <option value="SARSHAPEE">SARSHAPEE</option>
+              <option value="YAVA">YAVA</option>
+              <option value="GUNJA">GUNJA</option>
+              <option value="MASHA">MASHA</option>
+              <option value="SAANA">SAANA</option>
+              <option value="KOLA">KOLA</option>
+              <option value="TOLA">TOLA</option>
+              <option value="KARSHA">KARSHA</option>
+              <option value="SUKTI">SUKTI</option>
+              <option value="PALA">PALA</option>
+              <option value="PRASRUTHI">PRASRUTHI</option>
+              <option value="TULA">TULA</option>
+              <option value="ADHAKA">ADHAKA</option>
+              <option value="KHARI">KHARI</option>
+              <option value="BHARA">BHARA</option>
+              <option value="DRONI">DRONI</option>
+              <option value="PRASTHA">PRASTHA</option>
+              <option value="MANIKA">MANIKA</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <span class="labels">AYURVEDA </span>
+            <input type="text" class="form-control" id="isiv1" type="number" placeholder="Ayurveda" >
+            <select class="form-control" id="isin1" name="Weight Unit" onchange="WeightConverter($('#wtimgd').val())">
+              <option value="PARAMAANU">PARAMAANU</option>
+              <option value="VAMSEE">VAMSEE</option>
+              <option value="MAREECHI">MAREECHI</option>
+              <option value="RAAJIKA">RAAJIKA</option>
+              <option value="SARSHAPEE">SARSHAPEE</option>
+              <option value="YAVA">YAVA</option>
+              <option value="GUNJA">GUNJA</option>
+              <option value="MASHA">MASHA</option>
+              <option value="SAANA">SAANA</option>
+              <option value="KOLA">KOLA</option>
+              <option value="TOLA">TOLA</option>
+              <option value="KARSHA">KARSHA</option>
+              <option value="SUKTI">SUKTI</option>
+              <option value="PALA">PALA</option>
+              <option value="PRASRUTHI">PRASRUTHI</option>
+              <option value="TULA">TULA</option>
+              <option value="ADHAKA">ADHAKA</option>
+              <option value="SER">SER</option>
+              <option value="KHARI">KHARI</option>
+              <option value="BHARA">BHARA</option>
+              <option value="DRONI">DRONI</option>
+              <option value="PRASTHA">PRASTHA</option>
+              <option value="MANIKA">MANIKA</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <span class="labels">ISI CHARAKA </span>
+            <input type="text" class="form-control" id="gm" type="number" placeholder="grams">
+            <select class="form-control" id="wtmod" name="Weight Unit">
+              <option value="MILLIGRAMS">MILLIGRAMS</option>
+              <option value="GRAMS">GRAMS</option>
+              <option value="KILOGRAMS">KILOGRAMS</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <span class="labels">ISI SUSHRUTA </span>
+            <input type="text" class="form-control" id="mg" type="number" placeholder="milligrams">
+            <select class="form-control" id="wtmod" name="Weight Unit">
+              <option value="MILLIGRAMS">MILLIGRAMS</option>
+              <option value="GRAMS">GRAMS</option>
+              <option value="KILOGRAMS">KILOGRAMS</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <span class="labels">ISI SHARANGADHARA </span>
+            <input type="text" class="form-control" id="isiv3" type="number" placeholder="kilograms">
+            <select class="form-control" id="isin3" name="Weight Unit" onchange="WeightConverter($('#wtimgd').val())">
+              <option value="MILLIGRAMS">MILLIGRAMS</option>
+              <option value="GRAMS">GRAMS</option>
+              <option value="KILOGRAMS">KILOGRAMS</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <span class="labels"> ISI RRS </span>
+            <input type="text" class="form-control" id="kg" type="number" placeholder="kilograms">
+            <select class="form-control" id="wtmod" name="Weight Unit">
+              <option value="MILLIGRAMS">MILLIGRAMS</option>
+              <option value="GRAMS">GRAMS</option>
+              <option value="KILOGRAMS">KILOGRAMS</option>
+            </select>
+          </div>
+          <p id="synonymw" ></p>
+        </div>
+      <div class="col-lg-6 col-sm-12 portfolio-item">
+          <h4> Weight Converter(KALINGA) </h4>
+          <div class="input-group ">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="wtayu" type="number" oninput="WeightConverter(this.value)" onchange="WeightConverter(this.value)"> 
+            <select class="form-control" id="wtmod" name="Weight Unit">
+              <option value="PARAMAANU">PARAMAANU</option>
+              <option value="VAMSEE">VAMSEE</option>
+              <option value="MAREECHI">MAREECHI</option>
+              <option value="RAAJIKA">RAAJIKA</option>
+              <option value="SARSHAPEE">SARSHAPEE</option>
+              <option value="YAVA">YAVA</option>
+              <option value="GUNJA">GUNJA</option>
+              <option value="MASHA">MASHA</option>
+              <option value="SAANA">SAANA</option>
+              <option value="KOLA">KOLA</option>
+              <option value="TOLA">TOLA</option>
+              <option value="KARSHA">KARSHA</option>
+              <option value="SUKTI">SUKTI</option>
+              <option value="PALA">PALA</option>
+              <option value="PRASRUTHI">PRASRUTHI</option>
+              <option value="TULA">TULA</option>
+              <option value="ADHAKA">ADHAKA</option>
+              <option value="SER">SER</option>
+              <option value="KHARI">KHARI</option>
+              <option value="BHARA">BHARA</option>
+              <option value="DRONI">DRONI</option>
+              <option value="PRASTHA">PRASTHA</option>
+              <option value="MANIKA">MANIKA</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="gm" type="number" placeholder="grams">
+            <span class="labels"> Grams </span>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="mg" type="number" placeholder="milligrams">
+            <span class="labels"> Milligrams </span>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="kg" type="number" placeholder="kilograms">
+            <span class="labels"> Kilograms </span>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="q" type="number" placeholder="quintals">
+            <span class="labels"> Quintals </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="una">
+      <div class="row" >
+        <div class="col-lg-6 col-sm-12 portfolio-item">
+          <h4> Weight Converter </h4>
+          <div class="input-group ">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="timeayu" type="number" oninput="TimeConverter1(this.value)" onchange="TimeConverter1(this.value)" placeholder="Ayurveda/Modern"> 
+            <select class="form-control" id="tim11" data-size="auto" name="Time Unit" onchange="TimeConverter1($('#timeayu').val())">
+              <option value="GRAIN">GRAIN</option>
+              <option value="CHAWAL">CHAWAL</option>
+              <option value="JO">JO</option>
+              <option value="RATTI">RATTI</option>
+              <option value="SUKHA">SUKHA</option>
+              <option value="DANGA">DANGA</option>
+              <option value="MASHA">MASHA</option>
+              <option value="MISKALA">MISKALA</option>
+              <option value="TOLA">TOLA</option>
+              <option value="RUPYA">RUPYA</option>
+              <option value="AAQYA">AAQYA</option>
+              <option value="RATALA">RATALA</option>
+              <option value="SERA">SERA</option>
+              <option value="MILLIGRAMS">MILLIGRAMS</option>
+              <option value="GRAMS">GRAMS</option>
+              <option value="KILOGRAMS">KILOGRAMS</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="sec1" type="number" placeholder="Ayurveda">
+            <select class="form-control" id="tim21" data-size="auto" name="Time Unit" onchange="TimeConverter1($('#timeayu').val())">
+               <option value="GRAIN">GRAIN</option>
+              <option value="CHAWAL">CHAWAL</option>
+              <option value="JO">JO</option>
+              <option value="RATTI">RATTI</option>
+              <option value="SUKHA">SUKHA</option>
+              <option value="DANGA">DANGA</option>
+              <option value="MASHA">MASHA</option>
+              <option value="MISKALA">MISKALA</option>
+              <option value="TOLA">TOLA</option>
+              <option value="RUPYA">RUPYA</option>
+              <option value="AAQYA">AAQYA</option>
+              <option value="RATALA">RATALA</option>
+              <option value="SERA">SERA</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="hr1" type="number" placeholder="Modern">
+            <select class="form-control" id="tim31" data-size="auto" name="Time Unit" onchange="TimeConverter1($('#timeayu').val())">
+              <option value="MILLIGRAMS">MILLIGRAMS</option>
+              <option value="GRAMS">GRAMS</option>
+              <option value="KILOGRAMS">KILOGRAMS</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-12 portfolio-item">
+          <h4> Volume Converter </h4>
+          <div class="input-group ">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="wtayu" type="number" oninput="WeightConverter(this.value)" onchange="WeightConverter(this.value)" placeholder="Ayurveda/Modern"> 
+            <select class="form-control" id="wtmod" name="Weight Unit">
+              <option value="TOLA">TOLA</option>
+              <option value="MILLILITRES">MILLILITRES</option>
+              <option value="LITRES">LITRES</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="lmodm" type="number" placeholder="Modern">
+            <select class="form-control" id="lenmodm" name="Length Unit" onchange="LengthConverter($('#lenayu').val())">
+              <option value="MILLILITRES">MILLILITRES</option>
+              <option value="LITRES">LITRES</option>
+            </select>
+          </div>
+        </div>
+        
+       </div>
+    </div> 
+  </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+      $(".toggle").on("click", function() {
+        $("#ayu").toggle();
+        $("#ayul").toggleClass('active');
+        $("#unal").toggleClass('active');
+        $("#una").toggle();
+      });
+      function LengthConverter(valNum) {
+        $("#synonyml").text("");
+        var lena=["YAVODARA","ANGULA","BITAHASTI","AARATNI","HASTI","RAJAHASTA","NRIPAHASTA","VYAM","INCHES","MILLIMETERS","CENTIMETERS","METERS","KILOMETERS","FEET"];
+        var lenm=[0.24,1.95,22.86,41.91,45.72,55.88,55.88,182.88,2.54,0.1,1,100,100000,30.48];
+        var nmm=["INCHES","MILLIMETERS","CENTIMETERS","METERS","KILOMETERS","FEET"];
+        var vmm=[2.54,0.1,1,100,100000,30.48];
+        var value1=$("#lenmod").val();
+        var value2=$("#lenmoda").val();
+        var value3=$("#lenmodm").val();
+        var i,j;
+        for(i=0;i<lena.length;i++) {
+          if(value1==lena[i]) {
+            for(j=0;j<lena.length;j++) {
+              if(value2==lena[j]) {
+                var nval=valNum*lenm[i];
+                var dval=lenm[j];
+                var fval=nval/dval;
+                //alert(fval+" "+dval);
+                $("#lmoda").val(fval);
+              }
+            }
+            for(j=0;j<nmm.length;j++) {
+              if(value3==nmm[j]) {
+                var nval=valNum*lenm[i];
+                var dval=vmm[j];
+                var fval=nval/dval;
+                //alert(fval+" "+dval);
+                $("#lmodm").val(fval);
+              }
+            }
+          }
+        }
+        if(value1=="RAJAHASTA" || value2=="RAJAHASTA" || value1=="NRIPAHASTA" || value2=="NRIPAHASTA")
+          $("#synonyml").text("* RAJAHASTA is also known as NRIPAHASTA");
+        value1="";
+        value2="";
+      }
+      function TimeConverter(valNum) {
+
+        var timea=["KSHANA","LAVA","NIMESHA","KAASHTHA","KALAA","GHATI","MUHOORTA","AHORATRA","PAKSHA","MAASA","RITU","AYANA","SAMVATSARA","YUGA","AHORATRA OF DEVA","AHORATRA OF PITARASA","SECONDS","MINUTES","HOURS","DAYS","MONTHS","YEARS"];
+
+        var timem=[0.388,0.776,1.553,4.66,140,1440,2880,86400,1296000,2592000,5184000,157683000, 31536000,1576830000,31536000,2592000,1,60,3600,86400,2592000,31536000];
+
+        var value1=$("#tim1").val();
+        var value2=$("#tim2").val();
+        var value3=$("#tim3").val();
+
+        var i,j;
+
+        for(i=0;i<timea.length;i++) {
+          if(value1==timea[i]) {
+            for(j=0;j<timea.length;j++) {
+              if(value2==timea[j]) {
+               // var nval = valNum*
+                var nval=valNum*timem[i];
+                //var dval=timem[j];
+                var fval=nval/timem[j];
+                //alert(fval+" "+dval);
+                $("#sec").val(fval);
+              }
+            }
+            for(j=0;j<timea.length;j++) {
+              if(value3==timea[j]) {
+                var nval=valNum*timem[i];
+                var fval=nval/timem[j];
+                //alert(fval+" "+dval);
+                $("#hr").val(fval);
+              }
+            }
+          }
+        }
+        value1="";
+        value2="";
+  }
+
+      function WeightConverter(valNum) {
+        $("#synonymw").text("");
+        var wta = ["PARAMAANU","VAMSEE","MAREECHI","RAAJIKA","SARSHAPEE","YAVA","GUNJA","MASHA","SAANA","KOLA","TOLA","KARSHA","SUKTI","PALA","PRASRUTHI","TULA","ADHAKA","KHARI","BHARA","DRONI","PRASTHA","MANIKA"];
+        var wt3 = [0.0012,0.0361,0.217,1.302,3.906,31.25,125,750,3000,6000,12000,12000,24000,48000,96000,4800000,3072000,196600000,96000000,49152000,768000,384000];
+        var neq = ["MILLIGRAMS","GRAMS","KILOGRAMS"];
+        var veq = [1,1000,1000000];
+        var syn = ["PARAMAANU AND VAMSEE","PARAMAANU AND VAMSEE","","","","YAVA AND RATHIKA","GUNJA,HEMA AND DHAANYAKA","MASHA,TANKA AND DHARANA","SAANA, VATAKA , DRANGKSHANA AND KHSUDRAKA","KOLA ,AKSHA ,PICHU ,PAANITHALA ,PAANITHINDUKA ,PAANIMANIKA ,BIDAALAPADAKA ,SHODASIKA AND UDUMBARA","","KARSHA ,ASHTAMIKA AND ARDHAPALA","SUKTI,MUSHTI,AAMRA,CHATURDHIKA,PRAKUNCHAM AND SHODASEE"];
+        var value0=$("#wtnmgd").val();
+        var value3=$("#isin3").val();
+        var value1=$("#isin1").val();
+        var i;
+        for(i=0;i<wta.length;i++) {
+          if(value0==wta[i]) {
+            for(j=0;j<wta.length;j++) {
+              if(wta[j]==value1) {
+                var nval=valNum*wt3[i];
+                var dval=wt3[j];
+                var fval=nval/dval;
+                $("#isiv1").val(fval);
+              }  
+            } 
+          }
+        }
+        for(i=0;i<wta.length;i++) {
+          if(value0==wta[i]) {
+            if(syn[i]!="")
+              $("#synonymw").text("* SYNONYMS ARE "+syn[i]);
+            for(j=0;j<3;j++) {
+              if(neq[j]==value3) {
+                var nval=valNum*wt3[i];
+                var dval=veq[j];
+                var fval=nval/dval;
+                $("#isiv3").val(fval);
+              }  
+            } 
+          }
+        }
+
+      }
+      function TimeConverter1(valNum) {
+
+            var timea=["GRAIN","CHAWAL","JO","RATTI","SUKHA","DANGA","MASHA","MISKALA","TOLA","RUPYA","AAQYA","RATALA","SERA","MILLIGRAMS","GRAMS","KILOGRAMS"];
+
+            var timem=[15.58,15.58,63.32,125,125,500,970,4500,11664,57326,350000,468500,937000,1,1000,1000000];
+
+        var value1=$("#tim11").val();
+        var value2=$("#tim21").val();
+        var value3=$("#tim31").val();
+
+        var i,j;
+
+        for(i=0;i<timea.length;i++) {
+          if(value1==timea[i]) {
+            for(j=0;j<timea.length;j++) {
+              if(value2==timea[j]) {
+               // var nval = valNum*
+                var nval=valNum*timem[i];
+                //var dval=timem[j];
+                var fval=nval/timem[j];
+                //alert(fval+" "+dval);
+                $("#sec1").val(fval);
+              }
+            }
+            for(j=0;j<timea.length;j++) {
+              if(value3==timea[j]) {
+                var nval=valNum*timem[i];
+                var fval=nval/timem[j];
+                //alert(fval+" "+dval);
+                $("#hr1").val(fval);
+              }
+            }
+          }
+        }
+        value1="";
+        value2="";
+  }
+    </script>
+  </body>
+</html>
